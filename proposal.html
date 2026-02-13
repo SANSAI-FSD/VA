@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Will We Get Married? 💍</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fecfef);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+  }
+
+  /* Card */
+  .card {
+    text-align: center;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    padding: 40px 60px;
+    border-radius: 25px;
+    box-shadow: 0 0 30px rgba(255, 77, 109, 0.6);
+    color: white;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+  }
+
+  button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 10px;
+    transition: 0.3s;
+  }
+
+  .yes {
+    background: #ff4d6d;
+    color: white;
+  }
+
+  .yes:hover { transform: scale(1.1); }
+
+  .no {
+    background: white;
+    color: #ff4d6d;
+    position: relative;
+  }
+
+  /* Romantic text screen */
+  .message {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    color: white;
+    text-align: center;
+    flex-direction: column;
+    z-index: 5;
+  }
+
+  .message h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    animation: fadeIn 2s ease-in-out;
+  }
+
+  .message p {
+    font-size: 1.5rem;
+    animation: fadeIn 3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Fullscreen video */
+  #loveVideo {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    display: none;
+    z-index: 10;
+    background: black;
+  }
+</style>
+</head>
+<body>
+
+<!-- Proposal Card -->
+<div class="card">
+  <h1>Will We Get Married? 💍❤️</h1>
+  <button class="yes" onclick="startLove()">Yes 💖</button>
+  <button class="no" id="noBtn">No 😅</button>
+</div>
+
+<!-- Romantic Message -->
+<div class="message" id="messageBox">
+  <h2>THERIYUM NE YES THA SOLLUVA NU🫂 💍❤️</h2>
+  <p>LOVE YOU PAPS💖</p>
+</div>
+
+<!-- Fullscreen Video -->
+<video id="loveVideo" src="VE.mp4"></video>
+
+<script>
+  const noBtn = document.getElementById("noBtn");
+
+  // playful moving No button
+  noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 200 - 100;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  });
+
+  function startLove() {
+    const msg = document.getElementById("messageBox");
+    const video = document.getElementById("loveVideo");
+
+    // show romantic text
+    msg.style.display = "flex";
+
+    // after 4 seconds show video fullscreen & autoplay
+    setTimeout(() => {
+      msg.style.display = "none";
+      video.style.display = "block";
+
+      // request fullscreen
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+      } else if (video.msRequestFullscreen) {
+        video.msRequestFullscreen();
+      }
+
+      video.play();
+    }, 4000);
+  }
+</script>
+
+</body>
+</html>
